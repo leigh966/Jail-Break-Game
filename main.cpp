@@ -326,6 +326,7 @@ static void UpdateDrawFrame(void)
                     started = false;
                     health = START_HEALTH;
                     roundNo = 1;
+			score = 0;
                 }
             }
             else
