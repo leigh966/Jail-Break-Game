@@ -108,7 +108,7 @@ void guard::checkSpotted(Rectangle playerCollider)
     spottedCollider.width = 2*ENEMY_VIEW;
     spottedCollider.height = ENEMY_VIEW;
     spottedCollider.y = y;
-    if(width < 0)
+    if(flipped)
     {
         spottedCollider.x = x - spottedCollider.width;
     }

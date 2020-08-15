@@ -1,3 +1,7 @@
 .vs/
 *.bat
 misc/
+*.html
+*.js
+*.data
+*.wasm
