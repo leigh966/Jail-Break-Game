@@ -1,0 +1,5 @@
+Special Thanks To:
+Adarsh S. - Prison artwork - Source: https://adarshs.itch.io/prison-game-asset-pack
+Fliflifly - Animated Hearts - https://fliflifly.itch.io/hearts-and-health-bar
+Hyohnoo - Keyboard interaction artwork - https://hyohnoo.itch.io/keyboard-controller-keys
+Nectanebo - Gui artwork for "Start" and "Game Over" screens - https://nectanebo.itch.io/menu-buttons
