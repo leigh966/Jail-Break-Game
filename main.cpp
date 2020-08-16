@@ -378,20 +378,20 @@ int main(int argc, char* argv[])
     for (int index = 0; index < 100; index++) enemies[index].ready();
     ground = sprite{ "resources/ground.png", Vector2{0.0f, 0.0f}, Vector2{303.0f, 303.0f} };
     player = prisoner{ Vector2{0.0f, 0.0f} };
-    BLUE_DOOR = sprite{ "resources/door.png", HEALTH_BAR_POS, DOOR_SIZE };
-    GREEN_DOOR = sprite{ "resources/doorGreen.png", HEALTH_BAR_POS, DOOR_SIZE };
+    BLUE_DOOR = sprite{ "resources/door_blue.png", HEALTH_BAR_POS, DOOR_SIZE };
+    GREEN_DOOR = sprite{ "resources/door_green.png", HEALTH_BAR_POS, DOOR_SIZE };
     exitDoor = BLUE_DOOR;
 
     for (int index = 0; index < START_HEALTH; index++)
     {
         hpPos.x += HEART_WIDTH;
-        healthBar[index] = sprite{ "resources/newHeart.png", hpPos, Vector2{(float)(HEART_WIDTH), (float)(HEART_HEIGHT)} };
+        healthBar[index] = sprite{ "resources/heart.png", hpPos, Vector2{(float)(HEART_WIDTH), (float)(HEART_HEIGHT)} };
     }
     lock = sprite{ "resources/lock.png", HEALTH_BAR_POS, DOOR_SIZE };
     key = sprite{ "resources/key.png", HEALTH_BAR_POS, KEY_SIZE };
-    play = sprite{ "resources/newPlay.png", PLAY_POS, PLAY_SIZE };
-    eKey = sprite{ "resources/neweKey.png", PLAY_POS, E_SIZE };
-    continueButton = sprite{ "resources/newContinue.png", CONTINUE_POS, CONTINUE_SIZE };
+    play = sprite{ "resources/play.png", PLAY_POS, PLAY_SIZE };
+    eKey = sprite{ "resources/e.png", PLAY_POS, E_SIZE };
+    continueButton = sprite{ "resources/continue.png", CONTINUE_POS, CONTINUE_SIZE };
     startRound(roundNo, player, enemies, exitDoor);
 
 

@@ -47,7 +47,7 @@ const Vector2 CONTINUE_POS = Vector2{300.0f, 330.0f};
 const Vector2 CONTINUE_SIZE = Vector2{300.0f, 100.0f};
 
 //Sprites
-const char prisoner_FILE[] = "resources/newPrisoner.png";
-const char PRISONER_PNG_FLIPPED[] = "resources/newPrisonerFlipped.png";
-const char ENEMY_FILE[] = "resources/newCop.png";
-const char COP_PNG_FLIPPED[] = "resources/newCopFlipped.png";
+const char prisoner_FILE[] = "resources/prisoner.png";
+const char PRISONER_PNG_FLIPPED[] = "resources/prisoner_flipped.png";
+const char ENEMY_FILE[] = "resources/cop.png";
+const char COP_PNG_FLIPPED[] = "resources/cop_flipped.png";

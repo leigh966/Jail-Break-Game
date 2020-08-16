@@ -15,7 +15,7 @@ void guard::ready()
     frame = 0;
     generateDirection();
     pause = ENEMY_PAUSE;
-    alert = sprite{ "resources/newAlert.png", Vector2{(float)(x), (float)(y)}, ALERT_SIZE };
+    alert = sprite{ "resources/alert.png", Vector2{(float)(x), (float)(y)}, ALERT_SIZE };
 }
 
 void guard::start(int playerX, int playerY)

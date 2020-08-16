@@ -6,4 +6,6 @@ misc/
 *.js
 *.data
 *.wasm
+*.exe
+*.o
 Makefile
