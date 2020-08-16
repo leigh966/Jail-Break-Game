@@ -2,11 +2,11 @@
 
 <h2>How to play</h2>
 <h3>Online</h3>
-You can play the game through its itch.io page here:
+You can play the game through its itch.io page here: https://itzthenikolai.itch.io/jail-break
 <h3>Windows/Linux</h3>
 Simply download the latest release for your platform and run the executable within
 <h3>Other</h3>
-This game can run on any platform that supports Raylib (And there are a lot of them!). For these platforms, download the source and follow instructions at the Raylib website () to build for that platform - You will need to borrow a Makefile from a Raylib example/template depending on your development environment and target. 
+This game can run on any platform that supports Raylib (And there are a lot of them!). For these platforms, download the source and follow instructions at the Raylib github repo (https://github.com/raysan5/raylib) to build for that platform - You will need to borrow a Makefile from a Raylib example/template depending on your development environment and target. 
 
 <h2>Build Tests</h2>
 
