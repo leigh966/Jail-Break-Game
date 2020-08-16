@@ -1,7 +1,9 @@
 .vs/
-*.bat
+clean.bat
+esdk.bat
 misc/
 *.html
 *.js
 *.data
 *.wasm
+Makefile
