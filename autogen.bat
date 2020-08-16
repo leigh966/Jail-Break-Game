@@ -1,3 +1,3 @@
 echo "Generating Makefile..."
-copy "Makefile - Windows" Makefile
+copy "Windows - Makefile" Makefile
 echo "Makefile Generated!"
