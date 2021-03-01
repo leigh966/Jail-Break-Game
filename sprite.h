@@ -1,5 +1,8 @@
 #pragma once
+
 #include "raylib.h"
+#include "constants.h"
+#include <Math.h>
 
 class sprite
 {
@@ -23,6 +26,8 @@ public:
     sprite();
     void setTint(Color);
     void setFlippedTexture(char file[]);
+    void normalise(Vector2 &vector);
+    void scale(Vector2 &vector, int scale);
 protected:
     bool flipped;
     Texture2D normalTexture, flippedTexture;
@@ -32,5 +37,3 @@ protected:
     Color tint;
     
 };
-
-#include "sprite.cpp"

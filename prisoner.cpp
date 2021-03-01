@@ -1,4 +1,5 @@
-
+#include "prisoner.h"
+//#include <Math.h>
 
 prisoner::prisoner()
 {

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "sprite.h"
+
 enum spriteState
 {
     idled, running
@@ -19,5 +21,3 @@ protected:
     spriteState state;
     int pause;
 };
-
-#include "prisoner.cpp"

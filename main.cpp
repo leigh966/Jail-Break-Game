@@ -4,10 +4,45 @@
     #include <emscripten/emscripten.h>
 #endif
 
+#include <time.h>
 #include <math.h>
 #include <stdlib.h>
 #include "constants.h"
+#include "sprite.h"
+#include "prisoner.h"
+#include "guard.h"
 
+prisoner player;
+sprite BLUE_DOOR, GREEN_DOOR, exitDoor, ground;
+
+int frame = 0;
+int knockbackFrame = 0;
+
+Vector2 toGuard;
+Rectangle playerCollider, guardCollider;
+Vector2 playerTrajectory;
+bool touchedWall;
+int roundNo = 1;
+guard enemies[100];
+
+sprite healthBar[3];
+Vector2 hpPos = HEALTH_BAR_POS;
+int health = START_HEALTH;
+
+int lastHitIndex = 0;
+
+int score = 0;
+
+Rectangle exitCollider;
+bool locked = false, started = false;
+
+sprite key, play, lock, eKey, continueButton;
+
+int eBreak = 0;
+
+int pauseFrames = MAX_PAUSE_FRAMES;
+
+/*
 void normalise(Vector2 &vector)
 {      
     double x = vector.x, y = vector.y;
@@ -32,15 +67,7 @@ void scale(Vector2 &vector, int scale)
     vector.x *= scale;
     vector.y *= scale;
 }
-
-
-
-
-#include "sprite.h"
-#include "prisoner.h"
-#include <time.h>
-#include "guard.h"
-
+*/
 
 Vector2 generateRandomPos()
 {
@@ -93,9 +120,6 @@ void startRound(int roundNo, prisoner &player, guard enemies[100], sprite &exit)
     {
         enemies[index].start(player.getX(), player.getY());
     }
-    
-    
-    
 }
 
 void offerInteract(sprite &eKey, Vector2 playerPos, int &eBreak)
@@ -111,43 +135,6 @@ void offerInteract(sprite &eKey, Vector2 playerPos, int &eBreak)
     eKey.setPos(playerPos);
     eKey.draw(true);
 }
-
-
-prisoner player;
-
-sprite BLUE_DOOR, GREEN_DOOR, exitDoor, ground;
-
-int frame = 0;
-
-Vector2 toGuard;
-
-int knockbackFrame = 0;
-Rectangle playerCollider, guardCollider;
-Vector2 playerTrajectory;
-bool touchedWall;
-int roundNo = 1;
-guard enemies[100];
-
-
-sprite healthBar[3];
-Vector2 hpPos = HEALTH_BAR_POS;
-
-int health = START_HEALTH;
-
-int lastHitIndex = 0;
-
-int score = 0;
-
-
-Rectangle exitCollider;
-bool locked = false, started = false;
-
-sprite key, play, lock, eKey, continueButton;
-
-
-int eBreak = 0;
-
-int pauseFrames = MAX_PAUSE_FRAMES;
 
 void startMenu()
 {
