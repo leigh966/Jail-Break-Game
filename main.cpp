@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include "constants.h"
 #include "sprite.h"
+#include "animatedsprite.h"
 #include "prisoner.h"
 #include "guard.h"
 
@@ -36,7 +37,8 @@ int score = 0;
 Rectangle exitCollider;
 bool locked = false, started = false;
 
-sprite key, play, lock, eKey, continueButton;
+sprite key, lock;
+animatedsprite play, eKey, continueButton;
 
 int eBreak = 0;
 
@@ -122,7 +124,7 @@ void startRound(int roundNo, prisoner &player, guard enemies[100], sprite &exit)
     }
 }
 
-void offerInteract(sprite &eKey, Vector2 playerPos, int &eBreak)
+void offerInteract(animatedsprite &eKey, Vector2 playerPos, int &eBreak)
 {
     eBreak--;
     if(eBreak < 1)
@@ -238,7 +240,7 @@ void playNormal()
             nextRound();
         }
     }
-    if ((hitExit && !locked) || hitKey && locked)
+    if ((hitExit && !locked) || (hitKey && locked))
     {
         offerInteract(eKey, Vector2{ (float)(player.getX()), (float)(player.getY()) }, eBreak);
     }
@@ -376,9 +378,9 @@ int main(int argc, char* argv[])
     }
     lock = sprite{ "resources/lock.png", HEALTH_BAR_POS, DOOR_SIZE };
     key = sprite{ "resources/key.png", HEALTH_BAR_POS, KEY_SIZE };
-    play = sprite{ "resources/play.png", PLAY_POS, PLAY_SIZE };
-    eKey = sprite{ "resources/e.png", PLAY_POS, E_SIZE };
-    continueButton = sprite{ "resources/continue.png", CONTINUE_POS, CONTINUE_SIZE };
+    play = animatedsprite{ "resources/play.png", PLAY_POS, PLAY_SIZE };
+    eKey = animatedsprite{ "resources/e.png", PLAY_POS, E_SIZE };
+    continueButton = animatedsprite{ "resources/continue.png", CONTINUE_POS, CONTINUE_SIZE };
     startRound(roundNo, player, enemies, exitDoor);
 
 

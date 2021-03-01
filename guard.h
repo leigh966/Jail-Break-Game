@@ -1,8 +1,8 @@
 #pragma once
 
-#include "sprite.h"
+#include "animatedsprite.h"
 
-class guard : public sprite
+class guard : public animatedsprite
 {
 public:
     guard();

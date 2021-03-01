@@ -9,9 +9,6 @@ class sprite
 public:
     sprite(char files[], Vector2 pos, Vector2 size);
     void draw(bool allowedOutOfBounds);
-    void setFrame(int);
-    int getFrame();
-    void nextFrame();
     void setPosition(int xPos, int yPos);
     void transform(int deltaX, int deltaY);
     void rotate(int degrees);
@@ -31,7 +28,7 @@ public:
 protected:
     bool flipped;
     Texture2D normalTexture, flippedTexture;
-    int frame, x, y, width, height, rotation;
+    int x, y, width, height, rotation;
     int pause;
     bool touchingWall;
     Color tint;

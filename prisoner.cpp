@@ -14,7 +14,7 @@ prisoner::prisoner(Vector2 pos)
     height = prisoner_HEIGHT;
     normalTexture = LoadTexture(prisoner_FILE);
     flippedTexture = LoadTexture(PRISONER_PNG_FLIPPED);
-    frame = 0;
+    setFrame(0);
     rotation = 0;
     speed = BASE_SPEED;
     pause = PRISONER_PAUSE;
@@ -61,13 +61,13 @@ void prisoner::animate()
     pause--;
     if(pause <= 0)
     {
-        frame++;
-        if(state == idled && frame >= IDLE_FRAME) frame = IDLE_FRAME;
-        if (state == running && frame >= RUNNING_END_FRAME && width > 0) frame = RUNNING_START_FRAME;
-        else if (state == running && frame >= RUNNING_END_FRAME + 1) frame = RUNNING_START_FRAME + 1;
+        nextFrame();
+        if(state == idled && getFrame() >= IDLE_FRAME) setFrame(IDLE_FRAME);
+        if (state == running && getFrame() >= RUNNING_END_FRAME && width > 0) setFrame(RUNNING_START_FRAME);
+        else if (state == running && getFrame() >= RUNNING_END_FRAME + 1) setFrame(RUNNING_START_FRAME + 1);
         pause = PRISONER_PAUSE;
     }
-    //DrawText(FormatText("Frame: %2i", frame), 200, 80, 20, RED); // --Debug--
+    //DrawText(FormatText("Frame: %2i", getFrame()), 200, 80, 20, RED); // --Debug--
     draw(false);
 }
 
@@ -76,11 +76,12 @@ void prisoner::setState(spriteState s)
     state = s;
     if(s == idled)
     {
-        frame = IDLE_FRAME;
+        setFrame(IDLE_FRAME);
+        
     }
     if(s == running)
     {
-        frame = RUNNING_START_FRAME;
+        setFrame(RUNNING_START_FRAME);
     }
 }
 

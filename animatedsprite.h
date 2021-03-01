@@ -10,6 +10,7 @@ class animatedsprite : public sprite
         void setFrame(int);
         int getFrame();
         void nextFrame();
+        void draw(bool allowedOutOfBounds);
     protected:
         int frame;
-}
+};

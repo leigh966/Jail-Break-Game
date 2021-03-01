@@ -1,13 +1,13 @@
 #pragma once
 
-#include "sprite.h"
+#include "animatedsprite.h"
 
 enum spriteState
 {
     idled, running
 };
 
-class prisoner : public sprite
+class prisoner : public animatedsprite
 {
 public:
     prisoner();

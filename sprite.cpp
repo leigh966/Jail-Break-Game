@@ -8,7 +8,7 @@ sprite::sprite(char files[], Vector2 pos, Vector2 size)
     height = size.y;
     normalTexture = LoadTexture(files);
     flippedTexture = LoadTexture(files);
-    frame = 0;
+    //frame = 0;
     rotation = 0;
     tint = RAYWHITE;
 }
@@ -31,28 +31,17 @@ void sprite::draw(bool allowedOutOfBounds)
     if (!flipped)
     {
         DrawTextureRec(normalTexture,
-            Rectangle{ (float)(frame * width), 0, (float)(width), (float)(height) },
+            Rectangle{ 0, 0, (float)(width), (float)(height) },
             Vector2{ (float)(x), (float)(y) },
             tint);
     }
     else
     {
         DrawTextureRec(flippedTexture,
-            Rectangle{ (float)(frame * width), 0, (float)(width), (float)(height) },
+            Rectangle{ 0, 0, (float)(width), (float)(height) },
             Vector2{ (float)(x), (float)(y) },
             tint);
     }
-    
-}
-
-void sprite::setFrame(int num)
-{
-    frame = num;
-}
-
-void sprite::nextFrame()
-{
-    frame++;
 }
 
 void sprite::setPosition(int xPos, int yPos)
@@ -75,11 +64,6 @@ void sprite::rotate(int degrees)
 void sprite::setRotation(int degrees)
 {
     rotation = degrees;
-}
-
-int sprite::getFrame()
-{
-  return frame;  
 }
 
 sprite::sprite()
