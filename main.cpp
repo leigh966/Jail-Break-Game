@@ -44,33 +44,6 @@ int eBreak = 0;
 
 int pauseFrames = MAX_PAUSE_FRAMES;
 
-/*
-void normalise(Vector2 &vector)
-{      
-    double x = vector.x, y = vector.y;
-    double max;
-    if(abs(x) > abs(y))
-    {
-        max = x;
-    }
-    else
-    {
-        max = y;
-    }
-    vector.x = round(x/abs(max));
-    vector.y = round(y/abs(max));
-    //DrawText(FormatText("X: %02.02f", vector.x), 200, 80, 20, RED); --Debug--
-    //DrawText(FormatText("Y: %02.02f", vector.y), 200, 100, 20, RED);
-    
-}
-
-void scale(Vector2 &vector, int scale)
-{
-    vector.x *= scale;
-    vector.y *= scale;
-}
-*/
-
 Vector2 generateRandomPos()
 {
     return Vector2{(float)(rand() % (SCREEN_WIDTH - BORDER_SIZE  * 4) + BORDER_SIZE*2), (float)(rand() % (SCREEN_HEIGHT - BORDER_SIZE * 4) + BORDER_SIZE*2)};
