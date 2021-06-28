@@ -4,43 +4,45 @@
     #include <emscripten/emscripten.h>
 #endif
 
+#include <time.h>
 #include <math.h>
 #include <stdlib.h>
 #include "constants.h"
-
-void normalise(Vector2 &vector)
-{      
-    double x = vector.x, y = vector.y;
-    double max;
-    if(abs(x) > abs(y))
-    {
-        max = x;
-    }
-    else
-    {
-        max = y;
-    }
-    vector.x = round(x/abs(max));
-    vector.y = round(y/abs(max));
-    //DrawText(FormatText("X: %02.02f", vector.x), 200, 80, 20, RED); --Debug--
-    //DrawText(FormatText("Y: %02.02f", vector.y), 200, 100, 20, RED);
-    
-}
-
-void scale(Vector2 &vector, int scale)
-{
-    vector.x *= scale;
-    vector.y *= scale;
-}
-
-
-
-
 #include "sprite.h"
+#include "animatedsprite.h"
 #include "prisoner.h"
-#include <time.h>
 #include "guard.h"
 
+prisoner player;
+sprite BLUE_DOOR, GREEN_DOOR, exitDoor, ground;
+
+int frame = 0;
+int knockbackFrame = 0;
+
+Vector2 toGuard;
+Rectangle playerCollider, guardCollider;
+Vector2 playerTrajectory;
+bool touchedWall;
+int roundNo = 1;
+guard enemies[100];
+
+sprite healthBar[3];
+Vector2 hpPos = HEALTH_BAR_POS;
+int health = START_HEALTH;
+
+int lastHitIndex = 0;
+
+int score = 0;
+
+Rectangle exitCollider;
+bool locked = false, started = false;
+
+sprite key, lock;
+animatedsprite play, eKey, continueButton;
+
+int eBreak = 0;
+
+int pauseFrames = MAX_PAUSE_FRAMES;
 
 Vector2 generateRandomPos()
 {
@@ -93,12 +95,9 @@ void startRound(int roundNo, prisoner &player, guard enemies[100], sprite &exit)
     {
         enemies[index].start(player.getX(), player.getY());
     }
-    
-    
-    
 }
 
-void offerInteract(sprite &eKey, Vector2 playerPos, int &eBreak)
+void offerInteract(animatedsprite &eKey, Vector2 playerPos, int &eBreak)
 {
     eBreak--;
     if(eBreak < 1)
@@ -111,43 +110,6 @@ void offerInteract(sprite &eKey, Vector2 playerPos, int &eBreak)
     eKey.setPos(playerPos);
     eKey.draw(true);
 }
-
-
-prisoner player;
-
-sprite BLUE_DOOR, GREEN_DOOR, exitDoor, ground;
-
-int frame = 0;
-
-Vector2 toGuard;
-
-int knockbackFrame = 0;
-Rectangle playerCollider, guardCollider;
-Vector2 playerTrajectory;
-bool touchedWall;
-int roundNo = 1;
-guard enemies[100];
-
-
-sprite healthBar[3];
-Vector2 hpPos = HEALTH_BAR_POS;
-
-int health = START_HEALTH;
-
-int lastHitIndex = 0;
-
-int score = 0;
-
-
-Rectangle exitCollider;
-bool locked = false, started = false;
-
-sprite key, play, lock, eKey, continueButton;
-
-
-int eBreak = 0;
-
-int pauseFrames = MAX_PAUSE_FRAMES;
 
 void startMenu()
 {
@@ -251,7 +213,7 @@ void playNormal()
             nextRound();
         }
     }
-    if ((hitExit && !locked) || hitKey && locked)
+    if ((hitExit && !locked) || (hitKey && locked))
     {
         offerInteract(eKey, Vector2{ (float)(player.getX()), (float)(player.getY()) }, eBreak);
     }
@@ -389,9 +351,9 @@ int main(int argc, char* argv[])
     }
     lock = sprite{ "resources/lock.png", HEALTH_BAR_POS, DOOR_SIZE };
     key = sprite{ "resources/key.png", HEALTH_BAR_POS, KEY_SIZE };
-    play = sprite{ "resources/play.png", PLAY_POS, PLAY_SIZE };
-    eKey = sprite{ "resources/e.png", PLAY_POS, E_SIZE };
-    continueButton = sprite{ "resources/continue.png", CONTINUE_POS, CONTINUE_SIZE };
+    play = animatedsprite{ "resources/play.png", PLAY_POS, PLAY_SIZE };
+    eKey = animatedsprite{ "resources/e.png", PLAY_POS, E_SIZE };
+    continueButton = animatedsprite{ "resources/continue.png", CONTINUE_POS, CONTINUE_SIZE };
     startRound(roundNo, player, enemies, exitDoor);
 
 

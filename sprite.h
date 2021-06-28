@@ -1,14 +1,14 @@
 #pragma once
+
 #include "raylib.h"
+#include "constants.h"
+#include <Math.h>
 
 class sprite
 {
 public:
     sprite(char files[], Vector2 pos, Vector2 size);
     void draw(bool allowedOutOfBounds);
-    void setFrame(int);
-    int getFrame();
-    void nextFrame();
     void setPosition(int xPos, int yPos);
     void transform(int deltaX, int deltaY);
     void rotate(int degrees);
@@ -23,14 +23,14 @@ public:
     sprite();
     void setTint(Color);
     void setFlippedTexture(char file[]);
+    void normalise(Vector2 &vector);
+    void scale(Vector2 &vector, int scale);
 protected:
     bool flipped;
     Texture2D normalTexture, flippedTexture;
-    int frame, x, y, width, height, rotation;
+    int x, y, width, height, rotation;
     int pause;
     bool touchingWall;
     Color tint;
     
 };
-
-#include "sprite.cpp"

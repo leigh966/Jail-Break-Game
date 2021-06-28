@@ -1,4 +1,5 @@
-
+#include "guard.h"
+//#include <Math.h>
 
 guard::guard()
 {
@@ -12,7 +13,7 @@ void guard::ready()
     height = ENEMY_HEIGHT;
     normalTexture = LoadTexture(ENEMY_FILE);
     flippedTexture = LoadTexture(COP_PNG_FLIPPED);
-    frame = 0;
+    setFrame(0);
     generateDirection();
     pause = ENEMY_PAUSE;
     alert = sprite{ "resources/alert.png", Vector2{(float)(x), (float)(y)}, ALERT_SIZE };
@@ -20,7 +21,7 @@ void guard::ready()
 
 void guard::start(int playerX, int playerY)
 {
-    bool inRangeX= true;
+    bool inRangeX = true;
     bool inRangey = true;
     spotted = false;
     
@@ -48,16 +49,16 @@ void guard::move(int playerX, int playerY)
     moveFrames--;
     if(!(abs(direction.x) || abs(direction.y)))
     {
-        frame = IDLE_FRAME;
+        setFrame(IDLE_FRAME);
     }
     else
     {
         if(pause <= 0)
         {
-            frame++;
-            if(frame >= RUNNING_END_FRAME)
+            nextFrame();
+            if(getFrame() >= RUNNING_END_FRAME)
             {
-                frame = RUNNING_START_FRAME;
+                setFrame(RUNNING_START_FRAME);
             }
             pause = ENEMY_PAUSE;
             if(spotted) pause = 3 * pause / 4;                

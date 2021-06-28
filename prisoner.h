@@ -1,11 +1,13 @@
 #pragma once
 
+#include "animatedsprite.h"
+
 enum spriteState
 {
     idled, running
 };
 
-class prisoner : public sprite
+class prisoner : public animatedsprite
 {
 public:
     prisoner();
@@ -19,5 +21,3 @@ protected:
     spriteState state;
     int pause;
 };
-
-#include "prisoner.cpp"

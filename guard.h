@@ -1,5 +1,8 @@
 #pragma once
-class guard : public sprite
+
+#include "animatedsprite.h"
+
+class guard : public animatedsprite
 {
 public:
     guard();
@@ -18,4 +21,3 @@ protected:
     sprite alert;
 };
 
-#include "guard.cpp"

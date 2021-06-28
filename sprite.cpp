@@ -1,3 +1,4 @@
+#include "sprite.h"
 
 sprite::sprite(char files[], Vector2 pos, Vector2 size)
 {
@@ -7,7 +8,7 @@ sprite::sprite(char files[], Vector2 pos, Vector2 size)
     height = size.y;
     normalTexture = LoadTexture(files);
     flippedTexture = LoadTexture(files);
-    frame = 0;
+    //frame = 0;
     rotation = 0;
     tint = RAYWHITE;
 }
@@ -21,37 +22,26 @@ void sprite::draw(bool allowedOutOfBounds)
 {
     if(!allowedOutOfBounds)
     {
-    touchingWall = false;
-    if(x < BORDER_SIZE){ x = BORDER_SIZE; touchingWall = true; }
-    if(x > SCREEN_WIDTH - BORDER_SIZE - width){ x = SCREEN_WIDTH - BORDER_SIZE - width; touchingWall = true; }
-    if(y < BORDER_SIZE){ y = BORDER_SIZE;  touchingWall = true; }
-    if(y > SCREEN_HEIGHT - BORDER_SIZE - height){ y = SCREEN_HEIGHT - BORDER_SIZE - height; touchingWall = true; }
+        touchingWall = false;
+        if(x < BORDER_SIZE){ x = BORDER_SIZE; touchingWall = true; }
+        if(x > SCREEN_WIDTH - BORDER_SIZE - width){ x = SCREEN_WIDTH - BORDER_SIZE - width; touchingWall = true; }
+        if(y < BORDER_SIZE){ y = BORDER_SIZE;  touchingWall = true; }
+        if(y > SCREEN_HEIGHT - BORDER_SIZE - height){ y = SCREEN_HEIGHT - BORDER_SIZE - height; touchingWall = true; }
     }
     if (!flipped)
     {
         DrawTextureRec(normalTexture,
-            Rectangle{ (float)(frame * width), 0, (float)(width), (float)(height) },
+            Rectangle{ 0, 0, (float)(width), (float)(height) },
             Vector2{ (float)(x), (float)(y) },
             tint);
     }
     else
     {
         DrawTextureRec(flippedTexture,
-            Rectangle{ (float)(frame * width), 0, (float)(width), (float)(height) },
+            Rectangle{ 0, 0, (float)(width), (float)(height) },
             Vector2{ (float)(x), (float)(y) },
             tint);
     }
-    
-}
-
-void sprite::setFrame(int num)
-{
-    frame = num;
-}
-
-void sprite::nextFrame()
-{
-    frame++;
 }
 
 void sprite::setPosition(int xPos, int yPos)
@@ -74,11 +64,6 @@ void sprite::rotate(int degrees)
 void sprite::setRotation(int degrees)
 {
     rotation = degrees;
-}
-
-int sprite::getFrame()
-{
-  return frame;  
 }
 
 sprite::sprite()
@@ -124,4 +109,29 @@ void sprite::setPos(Vector2 pos)
 void sprite::setTint(Color c)
 {
     tint = c;
+}
+
+void sprite::normalise(Vector2 &vector)
+{      
+    double x = vector.x, y = vector.y;
+    double max;
+    if(abs(x) > abs(y))
+    {
+        max = x;
+    }
+    else
+    {
+        max = y;
+    }
+    vector.x = round(x/abs(max));
+    vector.y = round(y/abs(max));
+    //DrawText(FormatText("X: %02.02f", vector.x), 200, 80, 20, RED); --Debug--
+    //DrawText(FormatText("Y: %02.02f", vector.y), 200, 100, 20, RED);
+    
+}
+
+void sprite::scale(Vector2 &vector, int scale)
+{
+    vector.x *= scale;
+    vector.y *= scale;
 }
